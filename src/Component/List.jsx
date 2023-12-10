@@ -1,21 +1,19 @@
-import React, { useContext, useState } from "react";
+import React  from "react";
 
-import Content from "./Content";
-import { Appcontext } from "../Context";
+const List = ({ ele, setSelectedItem }) => {
 
-const List = ({ ele }) => {
-  const [open, setOpen] = useState(false);
+
+
 
   const handleClick = () => {
-    setOpen(!open);
+    setSelectedItem(ele.uuid);
   };
 
   return (
-    <div key={ele.uuid} className="agent-container">
+    <div className="agent-container">
       <h2 onClick={handleClick} className="para2">
         {ele.displayName}
       </h2>
-      {open ? <Content ele={ele} /> : null}
     </div>
   );
 };
