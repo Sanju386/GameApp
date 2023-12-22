@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { navbar } from "../data";
+import { Appcontext } from "../Context";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
+  const { data } = useContext(Appcontext);
+
+  const [drop, setDrop] = useState(false);
+
+  const handleClick = (item) => {
+
+
+
+    if (item.title.name === "GAMEINFO") {
+     
+      return setDrop(!drop);
+    }
+  };
+
   return (
     <header>
       <div className="nav-bar">
@@ -11,13 +27,24 @@ const Header = () => {
           </div>
           <div className="center-content">
             <div className="wrapper">
-              {navbar.map((itm, index) => {
+              {data.map((ele) => {
                 return (
-                  <p key={index} className="para1">
-                    {itm}
+                  <p
+                    onClick={() => handleClick(ele)}
+                    key={ele.title.id}
+                    className="para1"
+                  >
+                    {ele.title.name}
                   </p>
                 );
               })}
+
+
+{
+  drop ? <Dropdown/> : null
+}
+
+
             </div>
           </div>
         </div>

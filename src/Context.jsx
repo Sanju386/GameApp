@@ -1,16 +1,20 @@
 import React, { createContext, useReducer, useState } from "react";
-import { reducer } from "./reducer";
+
+import { navbar } from "./data";
 
 export const Appcontext = createContext();
 
 const Context = ({ children }) => {
   const [info, setInfo] = useState({ data: [] });
-  const [agent, setAgent] = useState([]);
+  const [agent, setAgent] = useState(null);
   const [selectedItem, setSelectedItem] = useState([]);
+  const [data, setData] = useState(navbar);
+ 
+ 
 
   return (
     <Appcontext.Provider
-      value={{ info, setInfo, agent, setAgent, selectedItem, setSelectedItem }}
+      value={{ info, setInfo, agent, setAgent, selectedItem, setSelectedItem, data, setData }}
     >
       {children}
     </Appcontext.Provider>
